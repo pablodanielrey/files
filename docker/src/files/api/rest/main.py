@@ -1,5 +1,5 @@
 import logging
-logging.getLogger().setLevel(logging.INFO)
+logging.getLogger().setLevel(logging.DEBUG)
 import sys
 import base64
 from flask import Flask, abort, make_response, jsonify, url_for, request, json, send_from_directory
@@ -79,6 +79,21 @@ def contenido(fid):
         return response
     finally:
         session.close()
+
+@app.route('/files/api/v1.0/archivo/<fid>.json', methods=['PUT','POST'])
+@jsonapi
+def agregar_archivo_json(fid):
+    session = Session()
+    try:
+        data = json.loads(request.get_data())
+        logging.debug('agregando archivo json ')
+        logging.debug(data)
+        ArchivosModel.agregar_archivo(session, fid=data['id'], nombre='', contenido=data['data'])
+        session.commit()
+
+    finally:
+        session.close()
+
 
 @app.route('/files/api/v1.0/archivo/', methods=['PUT','POST'])
 @jsonapi

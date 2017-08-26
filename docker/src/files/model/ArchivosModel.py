@@ -36,9 +36,24 @@ class ArchivosModel:
 
 
     @classmethod
-    def agregar_archivo(cls, session, nombre, contenido):
-        print(contenido)
+    def agregar_archivo(cls, session, fid, nombre, contenido):
+        agregar = True
+        arch = None
+        if fid:
+            arch = session.query(Archivo).filter(Archivo.id == fid).one_or_none()
+            agregar = False
+
+        if not arch:
+            arch = Archivo()
+            if fid: arch.id = fid
+
+        arch.nombre = nombre
+        arch.contenido = contenido
+
         arch = Archivo(
+            id=fid,
             nombre=nombre,
             contenido=contenido)
-        session.add(arch)
+
+        if agregar:
+            session.add(arch)
