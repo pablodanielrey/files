@@ -41,11 +41,13 @@ class ArchivosModel:
         arch = None
         if fid:
             arch = session.query(Archivo).filter(Archivo.id == fid).one_or_none()
-            agregar = False
+            if arch:
+                agregar = False
 
         if not arch:
             arch = Archivo()
-            if fid: arch.id = fid
+            if fid:
+                arch.id = fid
 
         arch.nombre = nombre
         arch.contenido = contenido
