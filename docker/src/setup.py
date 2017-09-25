@@ -35,7 +35,8 @@ setup(name='files',
                             'SQLAlchemy',
                             'google-api-python-client',
                             'httplib2',
-                            'pyjwt'],
+                            'pyjwt',
+                            'microservices_common'],
           entry_points={
             'console_scripts': [
                 'wamp=files.api.wamp.main:main',
