@@ -7,7 +7,6 @@ from model_utils import Base
 class Archivo(Base):
 
     __tablename__ = 'archivos'
-    __table_args__ = ({'schema': 'archivos'})
 
     nombre = Column(String)
     contenido = Column(String)

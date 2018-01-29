@@ -9,12 +9,9 @@ RUN apt-get update && apt-get install -y \
 ENV TZ=America/Argentina/Buenos_Aires
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-COPY pip.conf /etc/
-COPY entrypoint.sh /
-COPY supervisor/scron.conf /etc/supervisor/conf.d
-COPY supervisor/srsyslog.conf /etc/supervisor/conf.d
-COPY supervisor/srest.conf /etc/supervisor/conf.d
-COPY supervisor/sflask.conf /etc/supervisor/conf.d
+COPY docker/pip.conf /etc/
+COPY docker/entrypoint.sh /
+COPY docker/supervisor/rest.conf /etc/supervisor/conf.d
 
 WORKDIR /src
 

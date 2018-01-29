@@ -11,7 +11,7 @@
 
 from setuptools import setup, find_packages
 
-setup(name='files',
+setup(name='files-api',
           version='0.1.0.dev0',
           description='Proyecto que maneja el esquema de archivos',
           url='https://github.com/pablodanielrey/files',
@@ -39,9 +39,7 @@ setup(name='files',
                             'microservices_common'],
           entry_points={
             'console_scripts': [
-                'wamp=files.api.wamp.main:main',
-                'rest=files.api.rest.main:main',
-                'flask=files.web.main:main'
+                'rest=files.api.rest.main:main'
             ]
           }
 
